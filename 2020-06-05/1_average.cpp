@@ -1,4 +1,4 @@
-#include<iosteam>
+#include<iostream>
 using namespace std;
 int main()
 {
@@ -10,7 +10,7 @@ int main()
         cin>>array[i];
     }
     // 算和
-    int sum = 0;
+    double sum = 0;
     for (int i = 0; i < n; i++)
     {
         sum += array[i];
