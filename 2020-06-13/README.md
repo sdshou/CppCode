@@ -71,6 +71,58 @@
 
 对于100%的数据，0<r、c<=1000，n<=1000000，k<=r。
 
+```
+#include<iostream>
+using namespace std;
+int findMax(int a[], int n)
+{
+	//max表示当前数值最大的数的指针 
+	int max = 1;
+	for (int i = 2; i < n; i++)
+	{
+		if (a[i] > a[max]) max = i;
+	}
+	return max;
+}
+
+int main()
+{
+	int r, c, k, n;
+	cin>>r>>c>>k>>n;
+	int h, l;
+	int a[100];
+	//给数组a清零
+	for (int i = 0; i < r + 1; i++)
+	{
+		a[i] = 0;
+	}
+	
+	//统计第几行有多少僵尸 
+	for (int i = 0; i < n; i++)
+	{
+		//输入每个僵尸的行和列 
+		cin>>h>>l;
+		a[h]++;
+	}
+	//找出数组a的前K大 => 排序 
+	int sum = 0;//总的被炸死的僵尸数
+	int end = r + 1;
+	for (int i = 0; i < k; i++)
+	{
+		int max = findMax(a, end);
+		sum = sum + a[max];
+		//交换max跟最后的数的位置
+		int t = a[end - 1];
+		a[end - 1] = a[max];
+		a[max] = t;
+		//更新下一次n的值 
+		end--;
+	}
+	cout<<sum;
+	
+	return 0;
+} 
+```
 
 ----
 
